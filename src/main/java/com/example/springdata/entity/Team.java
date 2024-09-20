@@ -1,24 +1,26 @@
 package com.example.springdata.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-public class Member {
+public class Team {
     @Id @GeneratedValue
-    @Column(name = "member_id")
+    @Column(name = "team_id")
     private Long id;
 
-    private String username;
+    private String name;
 
-    private int age;
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+
+
 }
