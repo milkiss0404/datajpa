@@ -1,6 +1,5 @@
 package com.example.springdata.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,6 +23,11 @@ public class Member {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    public Member(String username, int age) {
+        this.username = username;
+        this.age = age;
+    }
+
     public Member(String username) {
         this.username = username;
     }
@@ -35,7 +39,6 @@ public class Member {
             changeTeam(team);
         }
     }
-
     public void changeTeam(Team team) {
         this.team  = team;
         team.getMembers().add(this);
